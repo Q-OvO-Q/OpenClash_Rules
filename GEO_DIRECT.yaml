@@ -8,3 +8,4 @@ payload:
   - GEOSITE,category-game-platforms-download
   - GEOSITE,category-public-tracker
   - GEOSITE,category-pt
+  - PROCESS-NAME,tailscaled
