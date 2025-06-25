@@ -1,6 +1,7 @@
 payload:
-  - []GEOSITE,private
-  - []GEOIP,private,no-resolve
-  - []GEOSITE,google-cn
+  - GEOSITE,private
+  - GEOIP,private,no-resolve
+  - GEOSITE,google-cn
   - GEOSITE,category-games@cn
   - GEOSITE,category-game-platforms-download
+  - GEOSITE,category-public-tracker
