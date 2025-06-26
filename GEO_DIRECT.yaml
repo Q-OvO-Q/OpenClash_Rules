@@ -1,7 +1,6 @@
 payload:
   - GEOSITE,private
   - GEOIP,private,no-resolve
-  - GEOIP,cn,no-resolve
   - GEOSITE,connectivity-check
   - GEOSITE,google-cn
   - GEOSITE,category-games@cn
