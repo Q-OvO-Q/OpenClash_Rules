@@ -9,4 +9,4 @@ payload:
   - GEOSITE,category-pt
   - PROCESS-NAME,tailscaled
   - DOMAIN-SUFFIX,istoreos.com
-  - DOMAIN-SUFFIX,courier-push-apple.com.akadns.net
+  - DOMAIN-SUFFIX,com.akadns.net
