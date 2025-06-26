@@ -8,3 +8,4 @@ payload:
   - GEOSITE,category-public-tracker
   - GEOSITE,category-pt
   - PROCESS-NAME,tailscaled
+  - DOMAIN-SUFFIX,istoreos.com
