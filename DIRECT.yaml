@@ -9,5 +9,6 @@ payload:
   - GEOSITE,category-pt
   - PROCESS-NAME,tailscaled
   - DOMAIN-SUFFIX,istoreos.com
+  - DOMAIN-SUFFIX,eesast.com
   #App Store
   - IP-CIDR,23.0.0.0/8,no-resolve
