@@ -10,3 +10,4 @@ payload:
   - PROCESS-NAME,tailscaled
   - DOMAIN-SUFFIX,istoreos.com
   - DOMAIN-SUFFIX,courier-push-apple.com.akadns.net
+  - IP-CIDR,17.253.85.206/32
