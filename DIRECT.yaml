@@ -9,3 +9,4 @@ payload:
   - GEOSITE,category-pt
   - PROCESS-NAME,tailscaled
   - DOMAIN-SUFFIX,istoreos.com
+  - IP-CIDR,23.0.0.0/8,no-resolve
