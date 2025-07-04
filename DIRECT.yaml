@@ -8,6 +8,7 @@ payload:
   - GEOSITE,category-public-tracker
   - GEOSITE,category-pt
   - PROCESS-NAME,tailscaled
+  - PROCESS-NAME,ntpd
   - DOMAIN-SUFFIX,istoreos.com
   - DOMAIN-SUFFIX,eesast.com
   #App Store
