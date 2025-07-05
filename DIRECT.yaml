@@ -11,7 +11,6 @@ payload:
   - PROCESS-NAME,ntpd
   - DOMAIN-SUFFIX,istoreos.com
   - DOMAIN-SUFFIX,eesast.com
-  - DOMAIN,download-cdn.jetbrains.com
-  - DOMAIN,downloads.marketplace.jetbrains.com
+  - DOMAIN-SUFFIX,jetbrains.com
   #App Store
   - IP-CIDR,23.0.0.0/8,no-resolve
