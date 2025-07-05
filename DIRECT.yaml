@@ -12,5 +12,6 @@ payload:
   - DOMAIN-SUFFIX,istoreos.com
   - DOMAIN-SUFFIX,eesast.com
   - DOMAIN-SUFFIX,jetbrains.com
+  - DOMAIN-SUFFIX,ubuntu.com
   #App Store
   - IP-CIDR,23.0.0.0/8,no-resolve
