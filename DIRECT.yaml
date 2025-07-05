@@ -12,5 +12,6 @@ payload:
   - DOMAIN-SUFFIX,istoreos.com
   - DOMAIN-SUFFIX,eesast.com
   - DOMAIN,download-cdn.jetbrains.com
+  - DOMAIN,downloads.marketplace.jetbrains.com
   #App Store
   - IP-CIDR,23.0.0.0/8,no-resolve
