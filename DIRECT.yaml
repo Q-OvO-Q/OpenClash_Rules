@@ -13,6 +13,6 @@ payload:
   - DOMAIN-SUFFIX,eesast.com
   - DOMAIN-SUFFIX,jetbrains.com
   - DOMAIN-SUFFIX,ubuntu.com
-  - DOMAIN,ota-downloads.nvidia.com
+  - DOMAIN-SUFFIX,nvidia.com
   #App Store
   - IP-CIDR,23.0.0.0/8,no-resolve
