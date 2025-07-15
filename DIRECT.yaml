@@ -9,6 +9,7 @@ payload:
   - GEOSITE,category-pt
   - PROCESS-NAME,tailscaled
   - PROCESS-NAME,ntpd
+  - PROCESS-NAME,curl
   - DOMAIN-SUFFIX,istoreos.com
   - DOMAIN-SUFFIX,eesast.com
   - DOMAIN-SUFFIX,jetbrains.com
