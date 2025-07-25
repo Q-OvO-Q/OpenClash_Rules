@@ -14,5 +14,6 @@ payload:
   - DOMAIN-SUFFIX,jetbrains.com
   - DOMAIN-SUFFIX,ubuntu.com
   - DOMAIN-SUFFIX,nvidia.com
+  - DOMAIN-SUFFIX,1password.com
   #App Store
   - IP-CIDR,23.0.0.0/8,no-resolve
