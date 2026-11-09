@@ -1,0 +1,27 @@
+# NAME: Apple_Global —— 只放「在国内直连用不了或用不全」的苹果服务（走「🍎 Apple Global」）
+# 放在仓库根目录，和 My_Direct.yaml 同级；OpenClash_Rules.ini 会引用：
+#   https://raw.githubusercontent.com/Q-OvO-Q/OpenClash_Rules/refs/heads/main/Apple_Global.yaml
+#
+# 收录标准：被墙，或者苹果服务端按中国大陆 IP 限制内容。仅仅「国内没有节点、直连慢」的不收，交给「🍎 苹果服务」直连。
+# 2026-11 核对。Apple 智能 / Siri / 专用代理 / 地区判定（gspe1）不在这里，在 Custom_Rules.yaml。
+# Apple TV 由前面的「🎥 AppleTV+」组处理。
+payload:
+  # Apple News：苹果同时看出口 IP 和 SIM 卡国家码，中国大陆 IP 会提示「不支持你所在的地区」
+  # （还需要 gspe1-ssl.ls.apple.com 返回非 CN，它已在 Custom_Rules.yaml 里）
+  - DOMAIN-SUFFIX,apple.news
+  - DOMAIN,news-assets.apple.com
+  - DOMAIN,news-client.apple.com
+  - DOMAIN,news-client-search.apple.com
+  - DOMAIN,news-edge.apple.com
+  - DOMAIN,news-events.apple.com
+  - DOMAIN,apple.comscoreresearch.com
+  # Apple 播客：外区账号在中国大陆 IP 下，「浏览」加载不出来、「搜索」会少掉部分节目（苹果按 IP 过滤）
+  - DOMAIN-SUFFIX,podcasts.apple.com
+  # Apple 图书商店：中国大陆没有这项服务；外区账号用国内网络能浏览但下载会一直转圈
+  - DOMAIN,books.itunes.apple.com
+  - DOMAIN-SUFFIX,books.apple.com
+  # App Store 网页版：国内 IP 打开外区 App 页面会被 302 跳到国区首页。
+  # 只写这一个精确域名，iPhone 上的 App Store（走 amp-api*.apps.apple.com 等子域）不受影响，继续直连
+  - DOMAIN,apps.apple.com
+  # 被墙（gfwlist 收录）：App Store 短链接
+  - DOMAIN-SUFFIX,appsto.re
