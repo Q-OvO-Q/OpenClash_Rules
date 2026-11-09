@@ -1,3 +1,70 @@
+# OpenClash 自定义规则（替换你现在的 Custom_Rules.yaml）
+# 这里的规则排在整份配置的最前面（优先级最高），而且写在本地，不依赖订阅转换后端和规则文件下载。
+# 只放「必须走外区出口、绝不能被后面任何直连规则抢走」的苹果关键链路。
+# 依赖策略组「🍎 Apple Intelligence」（新增，在 OpenClash_Rules.ini 里定义）和「🍎 iCloud Private Relay」。
+#
+# 来源（2026-11 核对）：
+#   Apple 企业网络主机清单 support.apple.com/101555（Apple Intelligence, Siri, and Search / iCloud 两节）
+#   Apple 开发者文档《为 iCloud 专用代理准备网络》
+#   v2fly / MetaCubeX geosite:apple-intelligence、Sukka ruleset icloud_private_relay、blackmatrix7 iCloudPrivateRelay
+#   iRingo 专用代理文档（acsegateway 订阅与地区检查）、社区 Siri AI 规则（Nyaacho0v0/siri-ai-rules、BrownieCoder/SiriAI-RouteKit）
 rules:
-  - DOMAIN-SUFFIX,p118-acsegateway.icloud.com,🍎 iCloud Private Relay
-  - DOMAIN-SUFFIX,configuration.ls.apple.com,🍎 Apple Global
+  # ========== 1. Apple 智能 / Siri AI ==========
+  # Siri 主服务器：Siri AI、传统 Siri、听写都连它。它在国内有 CDN（v2fly 标记为 @cn），
+  # 走直连就会落到国内服务器，Apple 智能相关请求会被拒绝 —— 这是 Siri AI 报错的主因
+  - DOMAIN-SUFFIX,guzzoni.apple.com,🍎 Apple Intelligence
+  # Siri / Spotlight 的搜索与知识服务（含 guzzoni.smoot.apple.com、api-glb-*.smoot.apple.com）
+  - DOMAIN-SUFFIX,smoot.apple.com,🍎 Apple Intelligence
+  # Siri 资源下发与探测（seed.siri / probe.siri 也有国内 CDN，同样会被拉去直连）
+  - DOMAIN-SUFFIX,siri.apple.com,🍎 Apple Intelligence
+  - DOMAIN,api-siri-prod.apple.com,🍎 Apple Intelligence
+  # 私有云计算（PCC）的第三方中继：手机先把加密请求交给这些中继，再由中继转给 Apple 的 AI 服务器
+  - DOMAIN,apple-relay.cloudflare.com,🍎 Apple Intelligence
+  - DOMAIN,apple-relay.fastly-edge.com,🍎 Apple Intelligence
+  - DOMAIN,cp4.cloudflare.com,🍎 Apple Intelligence
+  - DOMAIN,apple-relay.akamaized.net,🍎 Apple Intelligence
+  # Apple 智能扩展（ChatGPT / Gemini / Claude）的中继
+  - DOMAIN,apple-relay.apple.com,🍎 Apple Intelligence
+  - DOMAIN,apple-relay.mask.apple-dns.net,🍎 Apple Intelligence
+  # 兜底：中继的命名规律都是 apple-relay.<运营商>，以后 Apple 新增别家中继也能自动命中
+  - DOMAIN-KEYWORD,apple-relay,🍎 Apple Intelligence
+  # Image Playground 素材
+  - DOMAIN,playground-assets-cdn.apple.com,🍎 Apple Intelligence
+  - DOMAIN,playground-cdn.apple.com,🍎 Apple Intelligence
+  # 地区判定：手机靠 gspe1 判断「你在哪个国家」（按出口 IP 返回国家代码），返回 CN 会关掉 Apple 智能、Apple News 等。
+  # configuration.ls.apple.com 下发对应地区的定位/地图配置，和 gspe1 放同一个出口，避免两个地区信号打架。
+  # 副作用：Apple 地图会用国际版数据（你原来的配置已经是这样）
+  - DOMAIN,gspe1-ssl.ls.apple.com,🍎 Apple Intelligence
+  - DOMAIN-SUFFIX,configuration.ls.apple.com,🍎 Apple Intelligence
+  # （可选）社区清单里有，但 Apple 官方没把它归到 AI；它承载大量 iCloud 同步请求，默认不开。
+  # 改完后 Siri AI 仍提示地区/资格问题，或 Apple News 首次加载提示「Feed Unavailable」，再去掉下一行开头的 # 试试
+  # - DOMAIN,gateway.icloud.com,🍎 Apple Intelligence
+
+  # ========== 2. iCloud 专用代理（Private Relay）==========
+  # 开启时的资格检查：确认你有 iCloud+ 订阅，并按出口 IP 回传国家（响应头 X-MMe-Country）。
+  # p 后面的数字因账号而异（你的是 p118），用正则一次覆盖
+  - DOMAIN-REGEX,^p[0-9]+-acsegateway\.icloud\.com$,🍎 iCloud Private Relay
+  - DOMAIN,acsegateway.icloud.com,🍎 iCloud Private Relay
+  # 领取令牌、下载中继配置、地区可用性检测（fetchAuthTokens / fetchConfigFile）
+  - DOMAIN,mask-api.icloud.com,🍎 iCloud Private Relay
+  - DOMAIN,mask-api.fe.apple-dns.net,🍎 iCloud Private Relay
+  # 中继入口：mask = QUIC（UDP 443）主通道；mask-h2 = QUIC 不通时的 TCP 备用通道（HTTP/2）
+  - DOMAIN-SUFFIX,mask.icloud.com,🍎 iCloud Private Relay
+  - DOMAIN-SUFFIX,mask-h2.icloud.com,🍎 iCloud Private Relay
+  - DOMAIN,mask.apple-dns.net,🍎 iCloud Private Relay
+  - DOMAIN,mask-t.apple-dns.net,🍎 iCloud Private Relay
+  # 连通性探测（canary）：探测不通，手机会判定「此网络不能用专用代理」。原配置没覆盖，会掉进直连
+  - DOMAIN,mask-canary.icloud.com,🍎 iCloud Private Relay
+  - DOMAIN,canary.mask.apple-dns.net,🍎 iCloud Private Relay
+
+  # ========== 3. UDP 兜底（防止 QUIC 偷偷直连）==========
+  # 你的节点支持 UDP 时这两条永远不会被匹配到，留着只是防万一（比如以后换了不支持 UDP 的机场）
+  # Mihomo 的匹配逻辑（源码 tunnel/tunnel.go）：UDP 连接命中某条规则后，如果组里当前选中的节点不支持 UDP，
+  # 它不会报错，而是「接着往下找规则」，最后掉进后面的 apple_cdn / GEOSITE,apple / 17.0.0.0/8 → 直连，
+  # 等于专用代理和私有云计算的 QUIC 从国内直连出去 —— 时好时坏，正是「有时开不了」的一种来源。
+  # 下面两条只在这种情况下才会被匹配到（节点支持 UDP 时，上面的规则已经先接走了）：
+  # 把这类 UDP 拦下，手机等几秒后会改用 TCP（专用代理改走 mask-h2），而 TCP 一定走上面的代理组。
+  # 专用代理这一组：
+  - AND,((NETWORK,UDP),(OR,((DOMAIN-SUFFIX,mask.icloud.com),(DOMAIN-SUFFIX,mask-h2.icloud.com),(DOMAIN,mask.apple-dns.net),(DOMAIN,mask-t.apple-dns.net),(DOMAIN,mask-canary.icloud.com),(DOMAIN,canary.mask.apple-dns.net),(DOMAIN,mask-api.icloud.com),(DOMAIN,mask-api.fe.apple-dns.net),(DOMAIN-REGEX,^p[0-9]+-acsegateway\.icloud\.com$)))),REJECT
+  # Apple 智能这一组（Siri 目前只用 TCP，写进来是防它以后改用 QUIC 时掉回国内 CDN）：
+  - AND,((NETWORK,UDP),(OR,((DOMAIN-SUFFIX,guzzoni.apple.com),(DOMAIN-SUFFIX,smoot.apple.com),(DOMAIN-SUFFIX,siri.apple.com),(DOMAIN,api-siri-prod.apple.com),(DOMAIN-KEYWORD,apple-relay),(DOMAIN,cp4.cloudflare.com),(DOMAIN,playground-assets-cdn.apple.com),(DOMAIN,playground-cdn.apple.com),(DOMAIN,gspe1-ssl.ls.apple.com),(DOMAIN-SUFFIX,configuration.ls.apple.com)))),REJECT
