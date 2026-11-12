@@ -1,0 +1,24 @@
+# NAME: Crypto —— 加密货币补充名单（走模板原有的「🪙 加密货币」组，默认英国）
+# 放在仓库根目录；OpenClash_Rules.ini 会引用：
+#   https://raw.githubusercontent.com/Q-OvO-Q/OpenClash_Rules/refs/heads/main/Crypto.yaml
+#
+# 大部分交易所（币安、OKX、Bybit、Bitget、Gemini、Crypto.com 等）已经在上游列表 geosite:category-cryptocurrency 里，ini 里紧跟着这份引用了它。
+# 这里只写两类：你点名的（明写出来，不依赖路由器上 GeoSite 数据库的新旧），和上游没收的。
+payload:
+  # Kraken（含母公司 Payward 和期货站）
+  - DOMAIN-SUFFIX,kraken.com
+  - DOMAIN-SUFFIX,payward.com
+  - DOMAIN-SUFFIX,cryptofacilities.com
+  # Coinbase
+  - DOMAIN-SUFFIX,coinbase.com
+  # Uphold
+  - DOMAIN-SUFFIX,uphold.com
+  # MEXC（它的用户协议把英国列为禁止地区；真被拦了，把整个「🪙 加密货币」组换个地区，或把这三行单独拎出去）
+  - DOMAIN-SUFFIX,mexc.com
+  - DOMAIN-SUFFIX,mexc.co
+  - DOMAIN-SUFFIX,mexc.fm
+  # 上游没收的
+  - DOMAIN-SUFFIX,bitpanda.com
+  - DOMAIN-SUFFIX,ledger.com
+  - DOMAIN-SUFFIX,luno.com
+  - DOMAIN-SUFFIX,wirexapp.com
