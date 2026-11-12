@@ -25,3 +25,6 @@ payload:
   - DOMAIN,apps.apple.com
   # 被墙（gfwlist 收录）：App Store 短链接
   - DOMAIN-SUFFIX,appsto.re
+  # Safari「欺诈性网站警告」：外区设备查的是 Google 的名单，由苹果的 token. / proxy.safebrowsing.apple 代为转发。
+  # 直连时这个域名解析不出 IP（日志里三台苹果设备共失败 144 次、成功 0 次），走代理后改由节点那一侧解析
+  - DOMAIN-SUFFIX,safebrowsing.apple
