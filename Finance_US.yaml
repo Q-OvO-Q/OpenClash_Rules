@@ -1,0 +1,68 @@
+# NAME: Finance_US —— 只在美国经营的银行 / 券商 / 支付 / 征信（走「🏦 美国金融」）
+# 放在仓库根目录；OpenClash_Rules.ini 会引用：
+#   https://raw.githubusercontent.com/Q-OvO-Q/OpenClash_Rules/refs/heads/main/Finance_US.yaml
+#
+# 收录标准：这个域名只服务美国客户。英美共用一个域名的（americanexpress.com、chase.com、hsbc.com）在 Finance_Shared.yaml。
+# 这份在 ini 里排在最前，所以 us.hsbc.com 会先被这里接走，其余 hsbc.* 才轮到后面几份。
+#
+# 以后要加新的：在 clash_connlog 导出的 by_domain.csv 里搜 App 名 / 机构名，把「主域名」那一列的值按 DOMAIN-SUFFIX 加进来即可。
+payload:
+  # ---- 汇丰美国 ----
+  - DOMAIN-SUFFIX,us.hsbc.com
+
+  # ---- 银行 ----
+  - DOMAIN-SUFFIX,bankofamerica.com
+  - DOMAIN-SUFFIX,bac-assets.com
+  - DOMAIN-SUFFIX,citi.com
+  - DOMAIN-SUFFIX,citibankonline.com
+  - DOMAIN-SUFFIX,wellsfargo.com
+  - DOMAIN-SUFFIX,capitalone.com
+  - DOMAIN-SUFFIX,capitalone360.com
+  - DOMAIN-SUFFIX,usbank.com
+  - DOMAIN-SUFFIX,discover.com
+  - DOMAIN-SUFFIX,ally.com
+  - DOMAIN-SUFFIX,marcus.com
+  - DOMAIN-SUFFIX,pnc.com
+  - DOMAIN-SUFFIX,truist.com
+  - DOMAIN-SUFFIX,tdbank.com
+  - DOMAIN-SUFFIX,citizensbank.com
+  - DOMAIN-SUFFIX,citizensbankonline.com
+  - DOMAIN-SUFFIX,navyfederal.org
+  - DOMAIN-SUFFIX,usaa.com
+  - DOMAIN-SUFFIX,synchrony.com
+  - DOMAIN-SUFFIX,synchronybank.com
+  - DOMAIN-SUFFIX,mysynchrony.com
+  # 英国机构的美国分部（独立域名）
+  - DOMAIN-SUFFIX,barclaysus.com
+  - DOMAIN-SUFFIX,barclaycardus.com
+  - DOMAIN-SUFFIX,santanderbank.com
+
+  # ---- 网络银行 / 转账 / 先买后付 ----
+  - DOMAIN-SUFFIX,sofi.com
+  - DOMAIN-SUFFIX,chime.com
+  - DOMAIN-SUFFIX,venmo.com
+  - DOMAIN-SUFFIX,zellepay.com
+  - DOMAIN-SUFFIX,cash.app
+
+  # ---- 券商 ----
+  - DOMAIN-SUFFIX,schwab.com
+  - DOMAIN-SUFFIX,schwabcdn.com
+  - DOMAIN-SUFFIX,thinkorswim.com
+  - DOMAIN-SUFFIX,fidelity.com
+  - DOMAIN-SUFFIX,vanguard.com
+  - DOMAIN-SUFFIX,robinhood.com
+  - DOMAIN-SUFFIX,robinhood.net
+  - DOMAIN-SUFFIX,webull.com
+  - DOMAIN-SUFFIX,webullfintech.com
+  - DOMAIN-SUFFIX,firstrade.com
+  - DOMAIN-SUFFIX,etrade.com
+  - DOMAIN-SUFFIX,etrade.net
+  - DOMAIN-SUFFIX,merrilledge.com
+  - DOMAIN-SUFFIX,mymerrill.com
+  - DOMAIN-SUFFIX,tastytrade.com
+
+  # ---- 征信（美国站；英国站 equifax.co.uk / transunion.co.uk 在 Finance_UK.yaml）----
+  - DOMAIN-SUFFIX,equifax.com
+  - DOMAIN-SUFFIX,transunion.com
+  - DOMAIN-SUFFIX,annualcreditreport.com
+  - DOMAIN-SUFFIX,myfico.com
