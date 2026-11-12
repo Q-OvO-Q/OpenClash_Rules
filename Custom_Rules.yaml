@@ -57,6 +57,12 @@ rules:
   - DOMAIN,mask-canary.icloud.com,🍎 iCloud Private Relay
   - DOMAIN,canary.mask.apple-dns.net,🍎 iCloud Private Relay
 
+  # ========== 2b. iCloud 大文件不用 QUIC ==========
+  # 照片/视频原件、云盘文件、备份数据块都走 icloud-content.com，走哪个出口由 OpenClash_Rules.ini 里的「🍎 iCloud 数据」组决定。
+  # 这一条只做一件事：拦掉它的 QUIC（UDP 443），让 iPhone 自动改用 TCP。日志里这类连接约九成是 QUIC，
+  # 大流量 UDP 无论直连还是经节点转发都最容易被限速、丢包，表现就是「连得上但半天没进度」。
+  - AND,((NETWORK,UDP),(DOMAIN-SUFFIX,icloud-content.com)),REJECT
+
   # ========== 3. UDP 兜底（防止 QUIC 偷偷直连）==========
   # 你的节点支持 UDP 时这两条永远不会被匹配到，留着只是防万一（比如以后换了不支持 UDP 的机场）
   # Mihomo 的匹配逻辑（源码 tunnel/tunnel.go）：UDP 连接命中某条规则后，如果组里当前选中的节点不支持 UDP，
