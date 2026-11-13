@@ -3,12 +3,12 @@
 #   https://raw.githubusercontent.com/Q-OvO-Q/OpenClash_Rules/refs/heads/main/Finance_UK.yaml
 #
 # 这份是「默认去处」：非中国大陆的金融服务，只要不在 Finance_US.yaml（只做美国）、Finance_Shared.yaml（英美共用）、
-# Crypto.yaml（加密货币）里，都从英国出口走。ini 里紧跟着这份还接了上游的 geosite:category-finance（盈透、渣打、富途、老虎、长桥等）。
+# Crypto.yaml（加密货币）里，都从英国出口走。ini 里紧跟着这份还接了上游的 geosite:category-finance（汇丰英国站、N26、Wise、Stripe、盈透、渣打等），上游已有的这里不再写。
 #
 # 以后要加新的：在 clash_connlog 导出的 by_domain.csv 里搜 App 名 / 机构名，看它实际连了哪些域名，
 # 把「主域名」那一列的值按 DOMAIN-SUFFIX 加进来即可（子域名会自动包含）。
 payload:
-  # ================= 你点名的（American Express 在 Finance_Shared.yaml；Kraken / Coinbase / Uphold / MEXC 在 Crypto.yaml）=================
+  # ================= 你点名的（American Express 在 Finance_Shared.yaml；加密货币在 Crypto.yaml）=================
   # Revolut
   - DOMAIN-SUFFIX,revolut.com
   - DOMAIN-SUFFIX,revolut.me
@@ -18,9 +18,7 @@ payload:
   # Chase UK（chase.com 在 Finance_Shared.yaml）
   - DOMAIN-SUFFIX,chase.co.uk
   - DOMAIN-SUFFIX,nutmeg.com
-  # HSBC UK / first direct（全球站 hsbc.com 在 Finance_Shared.yaml，美国站在 Finance_US.yaml，中国站在 ini 里先放行直连）
-  - DOMAIN-SUFFIX,hsbc.co.uk
-  - DOMAIN-SUFFIX,hsbc.uk
+  # first direct（汇丰英国站在上游分类里；全球站 hsbc.com 在 Finance_Shared.yaml，美国站在 Finance_US.yaml）
   - DOMAIN-SUFFIX,firstdirect.com
   # Barclays / Barclaycard（美国分部 barclaysus.com 在 Finance_US.yaml）
   - DOMAIN-SUFFIX,barclays.co.uk
@@ -57,10 +55,6 @@ payload:
   # bunq
   - DOMAIN-SUFFIX,bunq.com
   - DOMAIN-SUFFIX,bunq.me
-  # N26
-  - DOMAIN-SUFFIX,n26.com
-  - DOMAIN-SUFFIX,number26.de
-  - DOMAIN-SUFFIX,tech26.de
   # Plutus
   - DOMAIN-SUFFIX,plutus.it
 
@@ -87,8 +81,6 @@ payload:
   - DOMAIN-SUFFIX,zopa.com
   - DOMAIN-SUFFIX,monese.com
   - DOMAIN-SUFFIX,tide.co
-  - DOMAIN-SUFFIX,wise.com
-  - DOMAIN-SUFFIX,transferwise.com
 
   # ================= 投资 =================
   - DOMAIN-SUFFIX,freetrade.io
@@ -112,8 +104,6 @@ payload:
   - DOMAIN-SUFFIX,clearpay.com
   - DOMAIN-SUFFIX,afterpay.com
   - DOMAIN-SUFFIX,affirm.com
-  - DOMAIN-SUFFIX,stripe.com
-  - DOMAIN-SUFFIX,stripe.network
   - DOMAIN-SUFFIX,adyen.com
   - DOMAIN-SUFFIX,checkout.com
   - DOMAIN-SUFFIX,worldpay.com
