@@ -18,15 +18,8 @@ rules:
   # Siri 资源下发与探测（seed.siri / probe.siri 也有国内 CDN，同样会被拉去直连）
   - DOMAIN-SUFFIX,siri.apple.com,🍎 Apple Intelligence
   - DOMAIN,api-siri-prod.apple.com,🍎 Apple Intelligence
-  # 私有云计算（PCC）的第三方中继：手机先把加密请求交给这些中继，再由中继转给 Apple 的 AI 服务器
-  - DOMAIN,apple-relay.cloudflare.com,🍎 Apple Intelligence
-  - DOMAIN,apple-relay.fastly-edge.com,🍎 Apple Intelligence
+  # 私有云计算和 ChatGPT 等扩展的中继（apple-relay.* 用关键词一次覆盖）
   - DOMAIN,cp4.cloudflare.com,🍎 Apple Intelligence
-  - DOMAIN,apple-relay.akamaized.net,🍎 Apple Intelligence
-  # Apple 智能扩展（ChatGPT / Gemini / Claude）的中继
-  - DOMAIN,apple-relay.apple.com,🍎 Apple Intelligence
-  - DOMAIN,apple-relay.mask.apple-dns.net,🍎 Apple Intelligence
-  # 兜底：中继的命名规律都是 apple-relay.<运营商>，以后 Apple 新增别家中继也能自动命中
   - DOMAIN-KEYWORD,apple-relay,🍎 Apple Intelligence
   # Image Playground 素材
   - DOMAIN,playground-assets-cdn.apple.com,🍎 Apple Intelligence
