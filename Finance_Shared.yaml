@@ -12,27 +12,28 @@
 # 还有别的机构你两边都有账户：把它那几行从 Finance_UK.yaml 剪过来即可（例如 Wise、Revolut、Klarna、Stripe，现在都在英国那份里）。
 payload:
   # ---- 1. 同一个域名管两国账户 ----
-  # American Express：英国和美国账户都在 americanexpress.com 登录
+  # 运通（关键词；它的中国站在 ini 里先放直连）
   - DOMAIN-KEYWORD,americanexpress
   - DOMAIN-SUFFIX,aexp-static.com
-  # Chase：chase.com 是美国 Chase 的域名，英国 Chase 的 App 后台也可能挂在它下面（英国官网 chase.co.uk 在 Finance_UK.yaml）
   - DOMAIN-SUFFIX,chase.com
   - DOMAIN-SUFFIX,chasecdn.com
-  # 汇丰全球站 hsbc.com（英国站 hsbc.co.uk / hsbc.uk 在 Finance_UK.yaml；美国站 us.hsbc.com 在 Finance_US.yaml，排在这份前面先被接走）
+  # 上游 category-finance 里也有，但那条指向英国组，所以这里要先接走
   - DOMAIN-SUFFIX,hsbc.com
-  # Experian / Credit Karma 的 .com 主站：美国用户用的是它，英国 App 也可能调用它（英国站 .co.uk 在 Finance_UK.yaml）
   - DOMAIN-SUFFIX,experian.com
   - DOMAIN-SUFFIX,creditkarma.com
   - DOMAIN-SUFFIX,creditkarmacdn.com
   - DOMAIN-SUFFIX,ckapis.com
-
-  # ---- 2. 公共设施 ----
-  # 网上付款时弹出的银行验证页（3-D Secure）
+ 
+  # ---- 2. 付款验证 / 银行账户连接 / 发卡组件 ----
   - DOMAIN-SUFFIX,cardinalcommerce.com
   - DOMAIN-SUFFIX,arcot.com
-  # 「连接你的银行账户」（英美都用 Plaid；只做英国 / 欧洲的 TrueLayer 等在 Finance_UK.yaml）
   - DOMAIN-SUFFIX,plaid.com
-  # 风控 / 身份验证厂商
+  - DOMAIN-SUFFIX,marqeta.com
+ 
+  # ---- 3. 风控 / 身份验证厂商 ----
+  - DOMAIN-SUFFIX,sardine.ai
+  - DOMAIN-SUFFIX,riskified.com
+  - DOMAIN-SUFFIX,nsureapi.com
   - DOMAIN-SUFFIX,forter.com
   - DOMAIN-SUFFIX,siftscience.com
   - DOMAIN-SUFFIX,sift.com
@@ -40,11 +41,9 @@ payload:
   - DOMAIN-SUFFIX,threatmetrix.com
   - DOMAIN-SUFFIX,iovation.com
   - DOMAIN-SUFFIX,iesnare.com
-  - DOMAIN-SUFFIX,sardine.ai
   - DOMAIN-SUFFIX,accertify.com
   - DOMAIN-SUFFIX,inauth.com
   - DOMAIN-SUFFIX,kount.com
-  - DOMAIN-SUFFIX,riskified.com
   - DOMAIN-SUFFIX,signifyd.com
   - DOMAIN-SUFFIX,nudatasecurity.com
   - DOMAIN-SUFFIX,biocatch.com
@@ -57,3 +56,6 @@ payload:
   - DOMAIN-SUFFIX,sumsub.com
   - DOMAIN-SUFFIX,withpersona.com
   - DOMAIN-SUFFIX,trulioo.com
+  # 风控组件用来查「你的出口 IP」的网站：必须和风控厂商同一个出口，否则它查到的 IP 和自己看到的对不上
+  - DOMAIN,icanhazip.com
+ 
