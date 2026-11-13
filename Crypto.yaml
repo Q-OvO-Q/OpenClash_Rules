@@ -2,8 +2,8 @@
 # 放在仓库根目录；OpenClash_Rules.ini 会引用：
 #   https://raw.githubusercontent.com/Q-OvO-Q/OpenClash_Rules/refs/heads/main/Crypto.yaml
 #
-# 大部分交易所（币安、OKX、Bybit、Bitget、Gemini、Crypto.com 等）已经在上游列表 geosite:category-cryptocurrency 里，ini 里紧跟着这份引用了它。
-# 这里只写两类：你点名的（明写出来，不依赖路由器上 GeoSite 数据库的新旧），和上游没收的。
+# 只写上游 geosite:category-cryptocurrency 没收的（Kraken、Coinbase、mexc.com、币安、OKX 等上游已有，ini 里紧跟着这份引用了它）。
+# 又被识别成别的地区时：用完 App 后看 match_domains.txt，把那个时间点冒出来的陌生域名加进来。
 payload:
   # Kraken 母公司 Payward、Kraken 期货站
   - DOMAIN-SUFFIX,payward.com
