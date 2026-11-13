@@ -9,7 +9,7 @@
 # Visa / 万事达的域名很多，没有写在这里，在 ini 里用上游列表（geosite:visa / mastercard）指到同一个组。
 # PayPal 也是英美共用，但模板里它本来就有自己的「💳 PayPal」组，可以单独切换，所以不在这里。
 #
-# 还有别的机构你两边都有账户：把它那几行从 Finance_UK.yaml 剪过来即可（例如 Wise、Revolut、Klarna、Stripe，现在都在英国那份里）。
+# 还有别的机构你两边都有账户：把它的域名加到这份里即可。这份排在英国名单和上游分类前面，会先被接走（Wise、Stripe 这类上游已有的也一样）。
 payload:
   # ---- 1. 同一个域名管两国账户 ----
   # 运通（关键词；它的中国站在 ini 里先放直连）
@@ -58,4 +58,3 @@ payload:
   - DOMAIN-SUFFIX,trulioo.com
   # 风控组件用来查「你的出口 IP」的网站：必须和风控厂商同一个出口，否则它查到的 IP 和自己看到的对不上
   - DOMAIN,icanhazip.com
- 
