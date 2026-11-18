@@ -9,7 +9,8 @@ payload:
   - DOMAIN-SUFFIX,payward.com
   - DOMAIN-SUFFIX,cryptofacilities.com
   # 其他交易所 / 钱包
-  - DOMAIN-SUFFIX,uphold.com
+  # 关键词：还有 upholdcdn.com
+  - DOMAIN-KEYWORD,uphold
   - DOMAIN-SUFFIX,bitpanda.com
   - DOMAIN-SUFFIX,ledger.com
   - DOMAIN-SUFFIX,luno.com
@@ -37,6 +38,9 @@ payload:
   - DOMAIN-SUFFIX,hotbookzone.com
   - DOMAIN-SUFFIX,dgshen.com
   - DOMAIN-SUFFIX,coldbookfly.ru
+  # 钱包登录（Privy）、稳定币出入金的合规接口（Bridge）
+  - DOMAIN-SUFFIX,privy.io
+  - DOMAIN-SUFFIX,bridge.xyz
   # Kraken 的客服页面、Coinbase 的设备识别
   - DOMAIN,kraken.zendesk.com
   - DOMAIN-SUFFIX,cb-device-intelligence.com
