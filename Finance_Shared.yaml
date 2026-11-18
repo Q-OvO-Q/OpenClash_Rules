@@ -8,6 +8,7 @@
 #      （银行看到你在美国、风控厂商却看到你在英国，本身就是风险信号，所以它们要跟着你当前在用的那家走）
 # Visa / 万事达的域名很多，没有写在这里，在 ini 里用上游列表（geosite:visa / mastercard）指到同一个组。
 # PayPal 也是英美共用，但模板里它本来就有自己的「💳 PayPal」组，可以单独切换，所以不在这里。
+# Forter、Sift 故意不放：日志里它们只跟着 G2A、Fiverr、claude.ai 出现，放进来反而让这些网站分成两个出口。
 #
 # 还有别的机构你两边都有账户：把它的域名加到这份里即可。这份排在英国名单和上游分类前面，会先被接走（Wise、Stripe 这类上游已有的也一样）。
 payload:
@@ -34,9 +35,6 @@ payload:
   - DOMAIN-SUFFIX,sardine.ai
   - DOMAIN-SUFFIX,riskified.com
   - DOMAIN-SUFFIX,nsureapi.com
-  - DOMAIN-SUFFIX,forter.com
-  - DOMAIN-SUFFIX,siftscience.com
-  - DOMAIN-SUFFIX,sift.com
   - DOMAIN-SUFFIX,online-metrix.net
   - DOMAIN-SUFFIX,threatmetrix.com
   - DOMAIN-SUFFIX,iovation.com
@@ -56,5 +54,14 @@ payload:
   - DOMAIN-SUFFIX,sumsub.com
   - DOMAIN-SUFFIX,withpersona.com
   - DOMAIN-SUFFIX,trulioo.com
+  # 设备指纹 / App 防护 / 风控决策：Fingerprint、Zimperium（汇丰）、Licel、Oscilar（Uphold）
+  - DOMAIN-SUFFIX,fpjs.io
+  - DOMAIN-SUFFIX,fpjscdn.net
+  - DOMAIN-SUFFIX,fpcdn.io
+  - DOMAIN-SUFFIX,fptls.com
+  - DOMAIN-SUFFIX,zimperium.com
+  - DOMAIN-SUFFIX,licelus.com
+  - DOMAIN-SUFFIX,oscilar.com
   # 风控组件用来查「你的出口 IP」的网站：必须和风控厂商同一个出口，否则它查到的 IP 和自己看到的对不上
-  - DOMAIN,icanhazip.com
+  - DOMAIN-SUFFIX,icanhazip.com
+  - DOMAIN-SUFFIX,ipinfo.io
