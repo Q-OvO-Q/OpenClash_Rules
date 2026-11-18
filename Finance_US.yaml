@@ -9,6 +9,12 @@
 payload:
   # ---- 汇丰美国 ----
   - DOMAIN-SUFFIX,us.hsbc.com
+  # 汇丰美国 App 还连这些（日志里只在美国会话出现）：在线客服、日志上报、信用卡后台 First Data、两家第三方的汇丰专用地址
+  - DOMAIN-SUFFIX,vam-us.cloud1.vv1865.com
+  - DOMAIN-SUFFIX,hsbc.com.mx
+  - DOMAIN-SUFFIX,firstdata.com
+  - DOMAIN,c-hsbc.lytics.io
+  - DOMAIN,hsbc.md-apis.medallia.com
 
   # ---- 银行 ----
   - DOMAIN-SUFFIX,bankofamerica.com
