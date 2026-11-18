@@ -13,18 +13,18 @@ payload:
   - DOMAIN-SUFFIX,revolut.com
   - DOMAIN-SUFFIX,revolut.me
   # Monzo
-  - DOMAIN-SUFFIX,monzo.com
-  - DOMAIN-SUFFIX,monzo.me
+  # 关键词：App 还连 monzo-alt.net、monzo.statuspage.io
+  - DOMAIN-KEYWORD,monzo
   # Chase UK（chase.com 在 Finance_Shared.yaml）
   - DOMAIN-SUFFIX,chase.co.uk
   - DOMAIN-SUFFIX,nutmeg.com
   # first direct（汇丰英国站在上游分类里；全球站 hsbc.com 在 Finance_Shared.yaml，美国站在 Finance_US.yaml）
+  # 汇丰英国 App 的防机器人校验（AWS WAF）
+  - DOMAIN,hsbc.edge.sdk.awswaf.com
   - DOMAIN-SUFFIX,firstdirect.com
-  # Barclays / Barclaycard（美国分部 barclaysus.com 在 Finance_US.yaml）
-  - DOMAIN-SUFFIX,barclays.co.uk
-  - DOMAIN-SUFFIX,barclays.com
-  - DOMAIN-SUFFIX,barclaycard.co.uk
-  - DOMAIN-SUFFIX,barclaycard.com
+  # Barclays / Barclaycard（关键词：App 还连 barclays.mobi、barclaysuk.sc.omtrdc.net；美国分部在 Finance_US.yaml，排在前面先接走）
+  - DOMAIN-KEYWORD,barclay
+  - DOMAIN,bclays-ads.aimatch.com
   # Experian（.com 主站在 Finance_Shared.yaml）
   - DOMAIN-SUFFIX,experian.co.uk
   - DOMAIN-SUFFIX,experianidentityservice.co.uk
