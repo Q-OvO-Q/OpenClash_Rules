@@ -10,6 +10,7 @@ payload:
   - DOMAIN-SUFFIX,nvidia.com
   - DOMAIN-SUFFIX,1password.com
   - DOMAIN-SUFFIX,ezvizlife.com
+  - DOMAIN-SUFFIX,panopto.eu
   # 腾讯云海外节点（WeChat CDN）
   - IP-CIDR,43.160.0.0/12,no-resolve
   - IP-CIDR,101.32.112.0/20,no-resolve
